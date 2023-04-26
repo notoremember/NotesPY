@@ -71,9 +71,61 @@ class NoteManager:
 
 
 
-
     def delete_note(self, id):
         note = self.get_note_by_id(id)
         if note:
             self.notes.remove(note)
 
+def add_note():
+    title = input("Введите заголовок заметки ")
+    body = input("Введите тело заметки ")
+    note = note_manager.create_note(title, body)
+    print("Заметка сохранена")
+
+
+def read_notes():
+    notes = note_manager.read_notes()
+    if notes:
+        for note in notes:
+            print(f"{note.id}: {note.title}\n{note.body}\n")
+    else:
+        print("заметок пока нет")
+
+def update_note():
+    id = int(input("ведите ID/номер заметки для редактирования "))
+    note = note_manager.get_note_by_id(id)
+    if note:
+        title = input(f"текущий заголовок заметки: {note.title}\nвведите новый заголовок заметки (оставьте пустым, чтобы оставить текущий): ")
+        body = input(f"текущее тело заметки: {note.body}\nвведите новое тело заметки (оставьте пустым, чтобы оставить текущее): ")
+        updated_note = note_manager.update_note(id, title, body)
+        if updated_note:
+            print(f"заметка с ID/номером {id} успешно обновлена")
+        else:
+            print(f"не удалось обновить заметку с ID {id}")
+    else:
+        print(f"заметка с ID {id} не найдена")
+
+
+def delete_note():
+    id = int(input("введите ID заметки для удаления: "))
+    note_manager.delete_note(id)
+    print(f"заметка с ID {id} успешно удалена")
+
+if __name__ == "__main__":
+    note_manager = NoteManager("notes.csv")
+
+    while True:
+        command = input("Введите команду: ")
+
+        if command == "add":
+            add_note()
+        elif command == "read":
+            read_notes()
+        elif command == "update":
+            update_note()
+        elif command == "delete":
+            delete_note()
+        elif command == "exit":
+            sys.exit()
+        else:
+            print("Некорректная команда")
