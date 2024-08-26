@@ -1,36 +1,5 @@
 # NotesPY
-my program notes on python , where you can save , read , delete , renaming or other functionals.Have fun
 
+my program notes on python , where you can save , read , delete , renaming or use other functional.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-thank you GB
+### Have fun
