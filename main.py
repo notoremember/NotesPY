@@ -69,14 +69,12 @@ class NoteManager:
         else:
             return None
 
-
-
     def delete_note(self, id):
         note = self.get_note_by_id(id)
         if note:
             self.notes.remove(note)
 
-def add_note():
+def create():
     title = input("Введите заголовок заметки ")
     body = input("Введите тело заметки ")
     note = note_manager.create_note(title, body)
@@ -112,13 +110,20 @@ def delete_note():
     print(f"заметка с ID {id} успешно удалена")
 
 if __name__ == "__main__":
+    print("Добро пожаловать в менеджер заметок!\n\
+    Список команд: \n\
+    create - создать/добавить заметку\n\
+    read - просмотреть заметку\n\
+    update - обновить/добавить что-то в заметку\n\
+    delete - удалить заметку \n\
+    exit - завершить работу менеждера\n")
     note_manager = NoteManager("notes.csv")
 
     while True:
         command = input("Введите команду: ")
 
-        if command == "add":
-            add_note()
+        if command == "create":
+            create()
         elif command == "read":
             read_notes()
         elif command == "update":
